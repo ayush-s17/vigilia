@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
+import type { InterventionWorkflow } from '../App'
 
 const links = [
   { label: 'Overview', to: '/', symbol: '▦' },
@@ -16,7 +17,7 @@ function titleFor(path: string) {
   return [...links, ...orgLinks].find((link) => link.to === path)?.label ?? 'Overview'
 }
 
-export function AppLayout() {
+export function AppLayout({ workflow: _workflow }: { workflow: InterventionWorkflow })  {
   const [open, setOpen] = useState(false)
   const location = useLocation()
   const linkGroup = (items: typeof links) => items.map((link) => (
